@@ -157,3 +157,31 @@ You can also watch the server logs with this command:
 ```bash
 tail -n 20 -f ~/Library/Logs/Claude/mcp-server-mcp-obsidian.log
 ```
+
+## ChatGPT Desktop (URL-based MCP)
+
+ChatGPT Desktop may require an MCP server URL instead of a local stdio process. This repository includes an
+HTTP runner that exposes an MCP endpoint using the SSE transport.
+
+### 1) Start the HTTP MCP server
+
+Set the required environment variables and run:
+
+```bash
+export OBSIDIAN_API_KEY="<your_api_key_here>"
+export OBSIDIAN_HOST="127.0.0.1"
+export OBSIDIAN_PORT="27124"
+export OBSIDIAN_PROTOCOL="https"
+
+uv --directory /path/to/mcp-obsidian run mcp-obsidian-http --host 127.0.0.1 --port 8000
+```
+
+MCP server URLs (try one that matches what ChatGPT expects):
+
+- `http://127.0.0.1:8000/sse`
+- `http://127.0.0.1:8000/mcp/sse`
+
+### 2) Register in ChatGPT Desktop
+
+- MCP Server URL: `http://127.0.0.1:8000/sse` (or `http://127.0.0.1:8000/mcp/sse`)
+- Auth: None (unless you have set up OAuth separately)
