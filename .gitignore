@@ -9,3 +9,6 @@ wheels/
 # Virtual environments
 .venv
 .env
+
+# macOS files
+.DS_Store
